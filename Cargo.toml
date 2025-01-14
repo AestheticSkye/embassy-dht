@@ -2,7 +2,7 @@
 name = "embassy-dht"
 version = "0.1.9"
 edition = "2021"
-keywords = ["DHTXX", "embassy",  "no_std", "RP2040", "RP2350"]
+keywords = ["DHTXX", "embassy", "no_std", "RP2040", "RP2350"]
 description = " This Rust library provides an interface for interacting with DHT1X and DHT2X temperature and humidity sensors using the Embassy framework."
 repository = "https://github.com/sndnvaps/embassy-dht"
 authors = ["Samuel Freeman <admin@sndnvaps.com>"]
@@ -12,15 +12,19 @@ categories = ["hardware-support", "no-std", "embedded"]
 
 [package.metadata.embassy_dht_docs]
 flavors = [
-    { name = "rp2040", target = "thumbv6m-none-eabi", features = ["rp2040"] },
-    { name = "rp2350", target = "thumbv8m.main-none-eabihf", features = ["rp2350"] },
+    { name = "rp2040", target = "thumbv6m-none-eabi", features = [
+        "rp2040",
+    ] },
+    { name = "rp2350", target = "thumbv8m.main-none-eabihf", features = [
+        "rp2350",
+    ] },
 ]
 
 [features]
 default = ["rp2040", "dht22", "dht20", "dht11", "embedded_alloc"]
 embedded_alloc = []
-rp2040 = ["rp-pac/rp2040","embassy-rp/rp2040"]
-rp2350 = ["rp-pac/rp235x","embassy-rp/rp235xa"]
+rp2040 = ["rp-pac/rp2040", "embassy-rp/rp2040"]
+rp2350 = ["rp-pac/rp235x", "embassy-rp/rp235xa"]
 dht11 = []
 dht20 = []
 dht22 = []
@@ -28,15 +32,33 @@ dht22 = []
 
 [dependencies]
 embedded-hal = { version = "1.0.0" }
-embassy-rp = { version = "0.2.0", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl"] }
-embassy-time = { version = "0.3.2", features = ["defmt", "defmt-timestamp-uptime"] }
-embassy-time-driver = "0.1.0"
-rp-pac = { version = "6.0.0", default-features=false, features = ["rt"] }
+embassy-rp = { version = "0.3.0", features = [
+    "defmt",
+    "unstable-pac",
+    "time-driver",
+    "critical-section-impl",
+] }
+embassy-time = { version = "0.4.0", features = [
+    "defmt",
+    "defmt-timestamp-uptime",
+] }
+embassy-time-driver = "0.2.0"
+rp-pac = { version = "7.0.0", default-features = false, features = ["rt"] }
 
-num-traits = { version = "0.2", default-features= false }
+num-traits = { version = "0.2", default-features = false }
 
 [patch.crates-io]
-embassy-rp = {  git="https://github.com/embassy-rs/embassy", rev="ee669ee5c57851ade034beca7cfaf81825c4c21b",features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl"] }
-embassy-time = { git="https://github.com/embassy-rs/embassy",  rev="ee669ee5c57851ade034beca7cfaf81825c4c21b",features = ["defmt", "defmt-timestamp-uptime"] }
-embassy-time-driver = { git="https://github.com/embassy-rs/embassy",  rev="ee669ee5c57851ade034beca7cfaf81825c4c21b"}
-rp-pac = { git="https://github.com/embassy-rs/rp-pac.git", rev="a7f42d25517f7124ad3b4ed492dec8b0f50a0e6c",default-features=false, features = ["rt"] }
+embassy-rp = { git = "https://github.com/embassy-rs/embassy", rev = "ee669ee5c57851ade034beca7cfaf81825c4c21b", features = [
+    "defmt",
+    "unstable-pac",
+    "time-driver",
+    "critical-section-impl",
+] }
+embassy-time = { git = "https://github.com/embassy-rs/embassy", rev = "ee669ee5c57851ade034beca7cfaf81825c4c21b", features = [
+    "defmt",
+    "defmt-timestamp-uptime",
+] }
+embassy-time-driver = { git = "https://github.com/embassy-rs/embassy", rev = "ee669ee5c57851ade034beca7cfaf81825c4c21b" }
+rp-pac = { git = "https://github.com/embassy-rs/rp-pac.git", rev = "a7f42d25517f7124ad3b4ed492dec8b0f50a0e6c", default-features = false, features = [
+    "rt",
+] }
